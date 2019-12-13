@@ -16,14 +16,12 @@ npm run build
 
 ###  1. Import vue-monoplasty-slide-verify into your vue.js project.
 
-cnpm install --save git+https://gitee.com/migloo/vue-monoplasty-slide-verify.git#v1.0.5
-
-v1.0.5:标签名
-
 Using build tools:
 
 ```bash
-npm install --save vue-monoplasty-slide-verify
+cnpm install --save git+https://gitee.com/migloo/vue-monoplasty-slide-verify.git#v1.0.5
+
+v1.0.5:标签名
 ```
 
 ```js
