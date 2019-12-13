@@ -42,16 +42,20 @@ Vue.use(SlideVerify);
             @success="onSuccess"
             @fail="onFail"
             @refresh="onRefresh"
+            :image="img"
             ></slide-verify>
 <div>{{msg}}</div>
 ```
 
 ```js
+import image1 from "./assets/img/image1.png";
+import image2 from "./assets/img/image2.png";
 export default {
         name: 'App',
         data(){
             return {
                 msg: '',
+                img:image1
             }
         },
         methods: {
@@ -62,7 +66,8 @@ export default {
                 this.msg = ''
             },
             onRefresh(){
-                this.msg = ''
+                this.msg = '',
+                this.img=image2;
             }
         }
     }
@@ -79,6 +84,7 @@ export default {
 | w | Number | canvas width |
 | h | Number | canvas height |
 | sliderText | String | Slide filled right |
+| image | String or null | 自定义控件显示的图片，如果不设置或者设置为null，则从网络随机获取图片|
 
 ### callBack
 

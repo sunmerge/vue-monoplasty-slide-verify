@@ -57,6 +57,10 @@
                 type: String,
                 default: 'Slide filled right',
             },
+            image:{ //当前需要显示的图片，由使用者传入，不传入则使用网络随机获取
+                type: String,
+                default: null
+            }
         },
         data() {
             return {
@@ -80,6 +84,14 @@
         },
         mounted() {
             this.init()
+        },
+        watch: {//监听image属性的变更
+            image:{
+                handler (newImage, oldImage) {
+                    this.reset();
+                    this.img.src = newImage;
+                }
+            }
         },
         methods: {
             init() {
@@ -142,22 +154,24 @@
                 img.crossOrigin = "Anonymous";
                 img.onload = onload;
                 img.onerror = () => {
-                    img.src = this.getRandomImg()
+                    img.src = require('../assets/img.jpg');
                 }
-                img.src = this.getRandomImg()
+                img.src = this.getRandomImg();
                 return img;
             },
             // 随机生成img src
             getRandomImg() {
-                return 'https://picsum.photos/300/150/?image=' + this.getRandomNumberByRange(0, 1084);
-                // return require('../assets/img.jpg')
+                if(this.image === null ) {//判断使用者是否传入图片对象
+                    return 'https://picsum.photos/300/150/?image=' + this.getRandomNumberByRange(0, 1084);
+                }
+                return this.image;
             },
             getRandomNumberByRange(start, end) {
                 return Math.round(Math.random() * (end - start) + start)
             },
             refresh() {
-                this.reset()
-                this.$emit('refresh')
+                this.reset();
+                this.$emit('refresh', this.image);//将当前的图片作为参数传递给父控件
             },
             sliderDown(event) {
                 this.originX = event.clientX;
@@ -207,7 +221,8 @@
                         this.containerFail = true;
                         this.$emit('fail')
                         setTimeout(() => {
-                            this.reset()
+                            this.reset();
+                            this.$emit('refresh', this.image);
                         }, 1000)
                     }
                 })
@@ -250,6 +265,7 @@
                     this.$emit('fail')
                     setTimeout(() => {
                         this.reset()
+                        this.$emit('refresh', this.image);
                     }, 1000)
                 }
             },
