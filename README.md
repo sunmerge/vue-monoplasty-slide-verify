@@ -1,7 +1,5 @@
 # vue-monoplasty-slide-verify
 
-> A Vue plugin to slide verify [Demo](https://monoplasty.github.io/vue-monoplasty-slide-verify/)
-
 ## Build Setup
 
 ``` bash
@@ -17,6 +15,10 @@ npm run build
 ## Quick Start
 
 ###  1. Import vue-monoplasty-slide-verify into your vue.js project.
+
+cnpm install --save git+https://gitee.com/migloo/vue-monoplasty-slide-verify.git#v1.0.5
+
+v1.0.5:标签名
 
 Using build tools:
 
